@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-list.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-link.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}"/>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var taskLinks = document.querySelectorAll('.task-link');
+
+            taskLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    var targetUrl = link.getAttribute('data-href');
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Users List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Authorities</th>
+        <th>Email</th>
+<!--        <th>Name</th>-->
+<!--        <th>Password</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="tr-task-link" th:each="user : ${users}">
+        <td class="task-link" th:attr="data-href=@{'/home/users/' + ${user.id}}" th:text="${user.id}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/users/' + ${user.id}}" th:text="${user.getERole()}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/users/' + ${user.id}}" th:text="${user.email}"></td>
+<!--        <td class="task-link" th:attr="data-href=@{'/home/users/' + ${user.id}}" th:text="${user.name}"></td>-->
+<!--        <td class="task-link" th:attr="data-href=@{'/home/users/' + ${user.id}}" th:text="${user.password}"></td>-->
+    </tr>
+
+    </tbody>
+</table>
+<a th:href="@{/home/users/create}">Create User</a>
+<a th:href="@{/home}">Return to home page</a>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+
+</body>
+</html>

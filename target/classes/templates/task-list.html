@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-list.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-link.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var taskLinks = document.querySelectorAll('.task-link');
+
+            taskLinks.forEach(function (link) {
+                link.addEventListener('click', function () {
+                    var targetUrl = link.getAttribute('data-href');
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+<h1>Task List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Due Date</th>
+        <th>Remaining</th>
+        <th>Completed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="tr-task-link" th:each="task : ${tasks}">
+        <td class="task-link" th:attr="data-href=@{'/home/tasks/' + ${task.id}}" th:text="${task.id}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/tasks/' + ${task.id}}" th:text="${task.name}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/tasks/' + ${task.id}}" th:text="${#temporals.format(task.dueDate, 'dd-MM-yyyy, HH:mm')}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/tasks/' + ${task.id}}" th:text="${task.daysRemaining}"></td>
+        <td class="task-link" th:attr="data-href=@{'/home/tasks/' + ${task.id}}" th:text="${task.completed} ? 'Yes' : 'No'"></td>
+
+    </tr>
+
+    </tbody>
+</table>
+<a th:href="@{/home/tasks/create}">Create Task</a>
+<a th:href="@{/home}">Return to home page</a>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Please Log In</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/login.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .form-group input {
+            width: calc(100% - 20px); /* Adjust width to account for padding */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px; /* Add right margin */
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 0; /* No margin for submit button */
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: #d9534f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .registration-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px; /* Add right margin */
+        }
+
+        .registration-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Please Log In</h1>
+    <div th:if="${param.error}" class="message">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}" class="message">
+        You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <input type="text" name="Email" placeholder="Email"/>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Password"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Log in"/>
+        </div>
+    </form>
+    <a th:href="@{/registration}" class="registration-link">Registration</a>
+</div>
+</body>
+</html>

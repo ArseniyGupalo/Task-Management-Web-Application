@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Creating Task</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/visual/css/create-task.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}" />
+</head>
+<body>
+<h1>Edit Task</h1>
+<form th:action="@{/home/tasks/__${task.id}__/edit(id=${task.id})}" th:object="${task}" method="post" enctype="multipart/form-data">
+  <label for="name">Name of task:</label>
+  <input type="text" id="name" name="name" th:field="*{name}"/>
+  <br>
+  <label for="dueDate">Date of termination:</label>
+  <input type="datetime-local" id="dueDate" name="dueDate" th:field="*{dueDate}" th:value="${task.dueDate}"/>
+  <br>
+  <label for="description">Description:</label>
+  <textarea class="description" id="description" rows="4" cols="50" name="description" style="resize: none;" th:field="*{description}"></textarea>
+  <br>
+  <label for="file">Image:</label>
+  <input type="file" class="file" id="file" name="image"/>
+  <br>
+  <button type="submit">Update task</button>
+</form>
+<a th:href="@{/home/tasks}">Return to task list</a>
+</body>
+</html>

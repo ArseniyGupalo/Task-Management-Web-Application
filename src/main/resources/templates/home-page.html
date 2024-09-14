@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manegement Web Application</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/home-page.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-list.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/task-link.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}"/>
+</head>
+<body>
+
+<h1>Task Manegement Web Application</h1>
+
+<a th:href="@{/home/tasks/create}">Create Task</a>
+<br>
+<a th:href="@{/home/tasks}">Watch tasks</a>
+<br>
+<a th:href="@{/home/users}">Watch users</a>
+<br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

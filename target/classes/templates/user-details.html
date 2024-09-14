@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:data-th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>Просмотр задачи</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/user-details.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/visual/css/style.css}"/>
+      <script th:src="@{/visual/css/js/updateUserRole-script.js}"></script>
+
+</head>
+<body>
+
+<h1>User details</h1>
+
+<div>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Username:</strong> <span th:text="${user.name}"></span></p>
+    <p><strong>Role:</strong> <span th:text="${user.ERole}"></span></p>
+<!--    <p><strong>Password:</strong> <span class="password-span" th:text="${user.password}"></span></p>-->
+    <p><strong>Authorities:</strong></p>
+    <label for="roleAdmin" class="role-label">Admin</label>
+    <input type="checkbox" id="roleAdmin" name="authority" value="ROLE_ADMIN"
+           class="role-checkbox"
+           th:checked="${user.ERole == T(com.example.task_manegement_web_application.entity.ERole).ROLE_ADMIN}"
+           th:attr="data-user-id=${user.id}"
+           th:onchange="updateUserRole(event)"/>
+</div>
+
+<!--<a th:href="@{/home/users/__${userId}__/edit}">Update user</a>-->
+
+<!--<form th:action="@{/home/users/${userId}/delete}" method="post">-->
+<!--  <input type="hidden" name="taskId" th:value="${user.id}" />-->
+<!--  <button id="deleteTask">Delete task</button>-->
+<!--</form>-->
+
+<!--<script>-->
+<!--  // Получаем кнопку по ее id-->
+<!--  var deleteButton = document.getElementById('deleteTask');-->
+
+<!--  // Добавляем обработчик события клика на кнопку-->
+<!--  deleteButton.addEventListener('click', function() {-->
+<!--    // Показываем диалоговое окно подтверждения-->
+<!--    var confirmation = confirm("Are you sure you want to delete this task?");-->
+<!--  });-->
+<!--</script>-->
+
+
+<a th:href="@{/home/users}">Return to users list</a>
+
+
+</body>
+</html>

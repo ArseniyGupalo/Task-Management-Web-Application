@@ -1,0 +1,12 @@
+.task-link {
+    cursor: pointer;
+
+}
+
+.task-link:active {
+    color: #004080;
+}
+
+.tr-task-link:hover {
+    background-color: #94a1dc;
+}
